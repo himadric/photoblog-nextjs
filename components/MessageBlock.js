@@ -5,7 +5,7 @@ export default function MessageBlock(props) {
         <section className={classes.message}>
             <h1>{props.heading}</h1>
             <p>
-                {props.message}
+                <div dangerouslySetInnerHTML={{ __html: props.message}} />
             </p>
         </section>
     )

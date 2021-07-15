@@ -82,7 +82,16 @@ const BLOGLIST = [
     "noOfFavorites": 2
   }
 ]
-export default function Home() {
+const MESSAGE = {
+  "heading": "",
+  "message": `Thanks for visiting my photography blog website. I am a semi professional photographer with avid interest
+  in taking photos, photographers, camera equipments and work of camera designers. I like to travel and take
+  photos. I have created this blog to share my travel experience and share my love about camera, work of famous
+  photographers and camera designers. If you would like see my work please visit my 
+  <a href="https://www.himadriphoto.com/" aria-label="Photography site" target="_blank">photography site</a>.`
+}
+export default function Home(props) {
+  //console.log(props);
   return (
       <>  
         <Head>
@@ -91,22 +100,31 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Banner 
-        image={BANNER.image}
-        imgAlt={BANNER.imgAlt}
-        title={BANNER.title}
-        heading={BANNER.heading}
-        subHeading={BANNER.subHeading} />
+        image={props.banner.image}
+        imgAlt={props.banner.imgAlt}
+        title={props.banner.title}
+        heading={props.banner.heading}
+        subHeading={props.banner.subHeading} />
         <div className='container'>
         <MessageBlock
-          heading=""
-          message = {<>Thanks for visiting my photography blog website. I am a semi professional photographer with avid interest
-              in taking photos, photographers, camera equipments and work of camera designers. I like to travel and take
-              photos. I have created this blog to share my travel experience and share my love about camera, work of famous
-              photographers and camera designers. If you would like see my work please visit my &nbsp;
-              <a href="https://www.himadriphoto.com/" aria-label="Photography site" target="blank">photography site</a>.</>} />
-          <TopicCardContainer topics={TOPICS} />
-          <BlogList blogs={BLOGLIST} />
+          heading={props.message.heading}
+          message ={props.message.message} />
+          <TopicCardContainer topics={props.topics} />
+          <BlogList blogs={props.blogList} />
         </div>
     </>
   )
+}
+
+export async function getStaticProps() {
+  //fetch data from external source
+  return {
+    props: {
+      banner: BANNER,
+      message: MESSAGE,
+      topics: TOPICS,
+      blogList: BLOGLIST
+    },
+    revalidate: 3600
+  }
 }
