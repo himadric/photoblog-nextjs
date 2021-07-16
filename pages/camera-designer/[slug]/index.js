@@ -79,7 +79,7 @@ export default function CamerDesigner(props) {
 
 export async function getStaticPaths() {
   return {
-    fallback: false,
+    fallback: 'blocking',
     paths: [
       {
         params: {

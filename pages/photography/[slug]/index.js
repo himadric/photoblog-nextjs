@@ -79,7 +79,7 @@ export default function Photography(props) {
 
 export async function getStaticPaths() {
   return {
-    fallback: false,
+    fallback: 'blocking',
     paths: [
       {
         params: {
